@@ -12,15 +12,28 @@
 // NODEJS TRADITIONAL WAY TO CREATE AND START A SERVER
 
 const http = require('http');
+const fs = require("fs");
 
 // Create an instance of the http server to handle HTTP requests
 let app = http.createServer((req, res) => {
     // Set a response type of plain text for the response
-    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
 
-    // Send back a response and end the connection
-    res.end('Hello World!\n');
+    var data = fs.readFileSync('input.txt');
+    
+    fs.readFile('input.txt', function (err, data) {
+        if (err) return console.error(err);
+        console.log(data.toString());
+     });
+    
+    console.log("Program Ended");
+
+    res.end('Hello World!\n'+data.toString());
 });
+
+// app.get('/file', function (req, res) {
+//     console.log('Reading file.')
+// });
 
 // Start the server on port 3000
 app.listen(3000, '127.0.0.1');
