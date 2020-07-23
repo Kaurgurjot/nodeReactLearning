@@ -1,5 +1,5 @@
-const events = require('events');
 
+const events = require('events');
 var eventEmitter = new events.EventEmitter();
 
 // listener #1
